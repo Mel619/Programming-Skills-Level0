@@ -1,0 +1,161 @@
+""" 1. Create an online banking system with the following features:
+
+* Users must be able to log in with a username and password.
+* If the user enters the wrong credentials three times, the system must lock them out.
+* The initial balance in the bank account is $2000.
+* The system must allow users to deposit, withdraw, view, and transfer money.
+* The system must display a menu for users to perform transactions. 
+
+UsrPsd = {"Admin":"Admin", "Mauro":"Saliba", "Wayne":"Rooney"} 
+
+cont = 3
+
+InitialBalanceAdmin = 2000
+InitialBalanceMel = 2000
+InitialBalanceWayne = 2000
+
+def menu ():
+
+    print(
+          "Que deseas hacer?:", 
+          "1)Retirar dinero, 2)Transfeir dinero, 3)Ver balance, 4)Finalizar ")
+    
+
+
+while cont >= 0:
+
+    nombre = input("Debes iniciar sesion, escribe tu usuario: ")
+    contrasenia = input("Escribe tu contrasenia: ")
+
+    if nombre in UsrPsd and UsrPsd[nombre] == contrasenia:
+        print("Has iniciado sesion correctamente")
+        break
+    else:
+        cont = cont - 1
+        print("Usuario y contrasenias incorrectos, te quedan " + str(cont) + " intentos")
+
+
+menu()
+
+while True:
+    opcion = input("Introduce un numero: ")
+
+    if opcion == "1":
+        print("Deseas retirar dinero ")
+        retirar = input("cuanto dinero deseas retirar? ")
+        if int(retirar) > InitialBalanceAdmin:
+            print("no tienes suficientes fondos, tus fondos son: " + str(InitialBalanceAdmin))
+        else:
+            InitialBalanceAdmin = InitialBalanceAdmin - int(retirar)
+            print("Tu valance queda en: " + str(InitialBalanceAdmin))
+    elif opcion == "2":
+        print("Deseas transferir dinero ")
+        transferir = input("cuanto dinero deseas transferir? ")
+        if int(transferir) > InitialBalanceAdmin:
+            print("no tienes suficientes fondos, tus fondos son: " + str(InitialBalanceAdmin))
+        else:
+            InitialBalanceAdmin = InitialBalanceAdmin - int(transferir)
+            print("Tu valance queda en: " + str(InitialBalanceAdmin))
+    elif opcion == "3":
+        print("tus fondos son: " + str(InitialBalanceAdmin))
+    elif opcion == "4":
+        break    
+    else:
+        print(menu()) """
+
+""" 2. Create a currency converter between CLP, ARS, USD, EUR, TRY, GBP with the following features:
+* 		The user must choose their initial currency and the currency they want to exchange to.
+* 		The user can choose whether or not to withdraw their funds. If they choose not to withdraw, it should return to the main menu.
+* 		If the user decides to withdraw the funds, the system will charge a 1% commission.
+* 		Set a minimum and maximum amount for each currency, it can be of your choice.
+* 		The system should ask the user if they want to perform another operation. If they choose to do so, it should restart the process; otherwise, the system should close. """
+
+
+
+"""Currency = {"ARS":811.58, "USD":1, "CLP":887.89, "GDP":0.79, "EUR": 0.91, "TRY":29.75}
+
+def menu():
+    print("Monedas: CLP, ARS, USD, EUR, TRY, GBP")
+
+    InitialCurrency = input("Elige tu moneda: ")
+    ExchangeCurrency = input("Elige la moneda a la que quieres cambiar: ")
+    dinero = (input("Cuanto dinero quieres convertir?: "))
+
+    if InitialCurrency in Currency and ExchangeCurrency in Currency:
+        valor1 = Currency[InitialCurrency]
+        valor2 = Currency[ExchangeCurrency]
+        valor3 = float(dinero) * valor2 / valor1
+    else:
+        print("no se encontro la moneda")
+    print(valor3)
+    retirar = input(f"Deseas retirar los fondos? se te cobrara un % de comision ")
+
+    if retirar == "si":
+        retiro =  1 * valor3 / 100 
+        valorFinal = valor3 - retiro
+        print("Usted ha retirado " + str(valorFinal) + ExchangeCurrency)
+    else:
+        ask = input("desea realizar otra conversion? ")
+        if ask == "si":
+            menu()
+        else:
+            print("Finalizando...")
+            
+
+menu()"""
+
+""" 3. Create an university enrollment system with the following characteristics:
+* 		The system has a login with a username and password.
+* 		Upon logging in, a menu displays the available programs: Computer Science, Medicine, Marketing, and Arts.
+* 		The user must input their first name, last name, and chosen program.
+* 		Each program has only 5 available slots. The system will store the data of each registered user, and if it exceeds the limit, it should display a message indicating the program is unavailable.
+* 		If login information is incorrect three times, the system should be locked.
+* 		The user must choose a campus from three cities: London, Manchester, Liverpool.
+* 		In London, there is 1 slot per program; in Manchester, there are 3 slots per program, and in Liverpool, there is 1 slot per program.
+* 		If the user selects a program at a campus that has no available slots, the system should display the option to enroll in the program at another campus."""
+
+
+UsrPswd = {}
+
+print("Debes crear una cuenta ")
+nombre = input("Introduce tu usuario ")
+clave = input("Introduce una contrasenia ")
+
+UsrPswd[nombre] = clave
+
+print("Ahora debes logearte: ")
+
+cont = 3
+
+
+while cont > 0:
+    usr = input("introduce tu usuario ")
+    pssw = input("introduce tu contrasenia ")
+    
+    if usr in UsrPswd and UsrPswd[usr] == pssw:
+        print("Inicio de sesion exitoso ")
+        break
+    elif usr in UsrPswd and UsrPswd[usr] != pssw:
+        print("Contrasenia incorrecta ")
+        cont = cont - 1
+    else:
+        print("Usuario y contrasenia incorrectos ")
+        cont = cont - 1
+    if cont == 0:
+        quit()
+    
+cienciasComp = 5
+medicina = 5
+marketing = 5
+artes = 5
+
+london = 1
+manchester = 3
+liverpool = 1
+
+print("Programas disponibles: Ciencias de la computacion, Medicina, Marketing, Artes ")
+
+
+name = input("introduce tu nombre: ")
+lname = input("introduce tu apellido ")
+program = input("introduce el programa al que quieres aplicar: ")
