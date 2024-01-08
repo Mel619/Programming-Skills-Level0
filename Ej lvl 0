@@ -242,3 +242,89 @@ Create_usr()
 Login()
 Menu()
 
+________________________________________________________________________________
+
+""" 5. Develop a finance management application with the following features:
+* 		The user records their total income.
+* 		There are categories: Medical expenses, household expenses, leisure, savings, and education.
+* 		The user can list their expenses within the categories and get the total for each category.
+* 		The user can obtain the total of their expenses.
+* 		If the user spends the same amount of money they earn, the system should display a message advising the user to reduce expenses in the category where they have spent the most money.
+* 		If the user spends less than they earn, the system displays a congratulatory message on the screen.
+* 		If the user spends more than they earn, the system will display advice to improve the user's financial health. """
+
+
+total_income = input("Please enter your monthly income: ")
+
+medical = {}
+house = {}
+leisure = {}
+education = {}
+
+
+sum_hou = 0
+sum_med = None
+def Medical ():
+
+    while True:
+        
+        print("Do you wish to add a product? 1)Yes 2)No ")
+        num = input() 
+        if num == "1":
+            print("Great! ")
+        else:
+            break
+
+        product = input("What product or service are you buying? ")
+        expense = input("How much are you paying per month? ")
+        
+        medical[product] = int(expense)
+
+    answer = input("Would you like to see the list of medical supplies and see the total expenses? 1)Yes 2)No ")
+
+    if answer == "1":
+        print(medical)
+        
+        global sum_med
+        sum_med = 0
+        for i in medical.values():
+            sum_med = sum_med + i
+        print("The total amount of money spent on medical supplies is: " + str(sum_med) + " dolars")
+        Final()
+    else:
+        Menu()    
+
+def Final ():
+
+    total_expenses = sum_med + sum_hou 
+
+    if total_expenses == int(total_income):
+        print("You should reduce some expenses... ")
+        Menu()
+    elif total_expenses < int(total_income):
+        print("Youre doing great!!! ")
+        Menu()
+    else:
+        print("Your expenses should be below your total income, try learning some financial concepts... ")
+        Menu()
+        
+
+def Menu ():
+
+    print("Choose one of the following categories: 1)Medical expenses, 2)Household expenses, 3)Leisure expenses, 4)Savings, 5)Education expenses ")
+
+    num = input()
+
+    if num == "1":
+        Medical()
+    elif num ==  "2":
+        Household()
+    elif num == "3":
+        Leisure()
+    elif num == "4":
+        Savings()
+    else:
+        Education()
+
+Menu()
+
