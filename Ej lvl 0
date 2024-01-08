@@ -159,3 +159,86 @@ print("Programas disponibles: Ciencias de la computacion, Medicina, Marketing, A
 name = input("introduce tu nombre: ")
 lname = input("introduce tu apellido ")
 program = input("introduce el programa al que quieres aplicar: ")
+
+""" 4. Create an online shipping system with the following features:
+* 		The system has a login that locks after the third failed attempt.
+* 		Display a menu that allows: Sending a package, exiting the system.
+* 		To send a package, sender and recipient details are required.
+* 		The system assigns a random package number to each sent package.
+* 		The system calculates the shipping price. $2 per kg.
+* 		The user must input the total weight of their package, and the system should display the amount to pay.
+* 		The system should ask if the user wants to perform another operation. If the answer is yes, it should return to the main menu. If it's no, it should close the system."""
+
+import random
+
+Usrs = {}
+
+def Shipp_price ():
+
+    print("Ingrese el peso en KG de su paquete, se le cobrara 2$ por kg ")
+    peso = input()
+    for i in range(int(peso) + 1):
+        i = i * 2
+    print(f"El costo de envio es de: " + str(i) + " $")
+
+def Package_number ():
+
+    random_num = random.randint(100000, 999999)
+    print("\nEl numero de paquete asignado es: " + str(random_num) )
+
+
+def Create_usr ():
+
+    name = input("Elige un nombre de usuario: ")
+    psswd = input("Elige una contrasenia: ")
+
+    Usrs[name] = psswd
+    print("Usuario creado exitosamente... \n")
+
+def Login ():
+
+    print("Debes iniciar sesion: ")
+
+    for i in range(3):
+
+        usr = input("Introduce tu usuario: ")
+        psw = input("Introduce tu contrasenia: ")
+
+        if usr in Usrs and Usrs[usr] == psw:
+            print("\nInicio de sesion exitoso... ")
+            break
+        else:
+            print("Credenciales invalidas intentalo nueva mente \n")
+
+def Menu ():
+    
+    print("Eliga una de las siguientes opciones 1)Enviar un paquete 2)Salir del sistema ")
+
+    while True:
+        num = input()
+        if num == "1":
+            print("Ahora debe proporcionar un remintente ")
+            remitente = input()
+            print("Ahora debe proporcionar un destinatario ")
+            destinatario = input()
+            print("Ahora debera calcular el precio del envio ")
+            Shipp_price()
+            print("Ahora se le asignara un numero de paquete ")
+            Package_number()
+            print("Desea hacer otra operacion? 1)Si 2)No")
+            seguir = input()
+            if seguir == "1":
+                Menu()
+            else:
+                quit()
+            break
+
+        else:
+            quit()
+    
+    
+    
+Create_usr()
+Login()
+Menu()
+
